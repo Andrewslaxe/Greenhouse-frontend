@@ -3,7 +3,7 @@ const URL_ENDPOINT = 'https://greenhouse-backend.vercel.app/'
 const fetchTemperature = async () => {
   const response = await fetch(URL_ENDPOINT + 'api/temperature')
   const temperature = await response.json()
-  return temperature
+  return temperature.slice(-10)
 }
 
 const fetchIdealTemperature = async () => {
