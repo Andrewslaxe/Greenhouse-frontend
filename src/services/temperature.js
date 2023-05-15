@@ -7,13 +7,13 @@ const fetchTemperature = async () => {
 }
 
 const fetchIdealTemperature = async () => {
-  const response = await fetch(URL_ENDPOINT + '/api/temperature/ideal')
+  const response = await fetch(URL_ENDPOINT + 'api/temperature/ideal')
   const temperature = await response.json()
   return temperature.value
 }
 
 const postIdealTemperature = async (idealTemperature) => {
-  await fetch(URL_ENDPOINT + '/api/temperature/ideal', {
+  await fetch(URL_ENDPOINT + 'api/temperature/ideal', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -23,7 +23,7 @@ const postIdealTemperature = async (idealTemperature) => {
 }
 
 const postCalentador = async (calentador) => {
-  await fetch(URL_ENDPOINT + '/api/calentador', {
+  await fetch(URL_ENDPOINT + 'api/calentador', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
@@ -33,7 +33,7 @@ const postCalentador = async (calentador) => {
 }
 
 const postVentilador = async (ventilador) => {
-  await fetch(URL_ENDPOINT + '/api/ventilador', {
+  await fetch(URL_ENDPOINT + 'api/ventilador', {
     method: 'PUT',
     headers: {
       'Content-Type': 'application/json'
