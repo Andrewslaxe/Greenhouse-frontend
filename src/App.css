@@ -12,7 +12,9 @@
 }
 
 body {
-  background-color: #f6f6f6;
+  background: #A1FFCE;
+  background: -webkit-linear-gradient(to right, #FAFFD1, #A1FFCE);
+  background: linear-gradient(to right, #FAFFD1, #A1FFCE);
   color: var(--dark-green);
 }
 
@@ -27,7 +29,6 @@ button {
 .intro {
   display: flex;
   padding: 5vh 10vw;
-  background: var(--light-green);
   justify-content: space-between;
   height: 90vh;
 }
@@ -43,7 +44,9 @@ button {
 }
 
 .dashboard {
-  background-color: var(--dark-green);
+  background: #093028;
+  background: -webkit-linear-gradient(to right, #237A57, #093028);
+  background: linear-gradient(to right, #237A57, #093028);
   height: 90vh;
   padding: 5vh 10vw;
   color: white;
@@ -58,4 +61,24 @@ button {
   background-color: #275345;
   display: flex;
   width: 70%;
+}
+
+.lightdash {
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to right, #24243e, #302b63, #0f0c29);
+  background: linear-gradient(to right, #24243e, #302b63, #0f0c29);
+
+}
+
+.lightdash .graph__container {
+  background-color: #3b3579;
+}
+
+.lightdash button {
+  background-color: #3b3579;
+}
+
+.lightdash button:hover {
+  background-color: white;
+  color: #3b3579;
 }

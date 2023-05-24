@@ -3,15 +3,17 @@
 .container {
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: space-around;
   align-items: center;
 }
 
-.actual__temperature {
+.actual__temperature,
+.actual__light {
   text-align: center;
 }
 
-.actual__temperature div {
+.actual__temperature div,
+.actual__light div {
   font-size: 30px;
 }
 
@@ -19,7 +21,7 @@
   position: relative;
   display: block;
   text-align: center;
-  font-size: 6em;
+  font-size: 3em;
   color: white;
   font-weight: 400;
 }
@@ -46,7 +48,8 @@
   box-shadow: -407px 0 0 400px;
 }
 
-.actual__temperature button {
+.actual__temperature button,
+.actual__light button {
   border: 2px solid white;
   padding: 10px 30px;
   color: white;
@@ -55,7 +58,8 @@
   background-color: #15372c;
 }
 
-.actual__temperature button:hover {
+.actual__temperature button:hover,
+.actual__light button:hover {
   background-color: white;
   color: #15372c;
   cursor: pointer;

@@ -22,24 +22,4 @@ const postIdealTemperature = async (idealTemperature) => {
   })
 }
 
-const postCalentador = async (calentador) => {
-  await fetch(URL_ENDPOINT + 'api/calentador', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ "value": calentador })
-  })
-}
-
-const postVentilador = async (ventilador) => {
-  await fetch(URL_ENDPOINT + 'api/ventilador', {
-    method: 'PUT',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({ "value": ventilador })
-  })
-}
-
-export default { postCalentador, postVentilador, fetchTemperature, fetchIdealTemperature, postIdealTemperature }
+export default { fetchTemperature, fetchIdealTemperature, postIdealTemperature }

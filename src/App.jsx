@@ -1,6 +1,6 @@
 import { Temperature } from './Temperature'
 import './App.css'
-
+import { Light } from './Light'
 function App () {
   return (
     <>
@@ -18,6 +18,9 @@ function App () {
       </div>
       <div className='dashboard'>
         <Temperature />
+      </div>
+      <div className='dashboard lightdash'>
+        <Light />
       </div>
     </>
   )

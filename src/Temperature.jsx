@@ -1,66 +1,8 @@
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from 'chart.js'
+import { useEffect, useState } from 'react'
 
 import temperature from './services/temperature'
-
 import './slider.css'
-import { useEffect, useState } from 'react'
-import { Line } from 'react-chartjs-2'
-
-
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-)
-
-const options = {
-  responsive: true,
-  plugins: {
-    legend: { display: false },
-  },
-  scales: {
-    x: {
-      grid: {
-        display: false,
-      },
-      ticks: {
-        color: 'white',
-      },
-      title: {
-        display: true,
-        text: 'Hora',
-        color: 'white',
-      }
-    },
-    y: {
-      title: {
-        display: true,        
-        text: 'Temperatura (°C)',
-        color: 'white',
-      },
-      grid: {
-        display: false,
-      },
-      ticks: {
-        color: 'white',
-      },
-    },
-  },
-
-}
+import {Chart} from './Chart'
 
 export function Temperature(){
   const [allTemperature, setAllTemperature] = useState([])
@@ -81,70 +23,14 @@ export function Temperature(){
 
   }, [])
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      parseInt(actualTemperature) < parseInt(idealTemperature) ? calentadorPower() : disipadorPower()
-    }, 1000)
-    return () => clearInterval(interval)
-  }, [idealTemperature, actualTemperature])
-
-  const [calentador, setCalentador] = useState(0)
-  const [disipador, setDisipador] = useState(0)
-
   const handleIdealTemperature = (e) => {
     setIdealTemperature(e.target.value)
-    parseInt(actualTemperature) < parseInt(idealTemperature) ? calentadorPower() : disipadorPower()
     updateIdealTemperature(e.target.value)
   }
 
   const updateIdealTemperature = async (value) => {
     await temperature.postIdealTemperature(value)
   }
-
-  const calentadorPower = () => {
-    setDisipador(0)
-    const error = idealTemperature - actualTemperature
-    const kP = 0.5
-    const kI = 1
-    const kD = 1
-    const dt = 1
-    const P = kP * error
-    const I = kI * error * dt
-    const D = kD * error / dt
-    const power = P + I + D
-    setCalentador(power.toFixed(2))
-    temperature.postCalentador(power.toFixed(2))
-  }
-
-  const disipadorPower = () => {
-    setCalentador(0)
-    const error = actualTemperature - idealTemperature  
-    const kP = 0.5
-    const kI = 1
-    const kD = 1
-    const dt = 1
-    const P = kP * error
-    const I = kI * error * dt
-    const D = kD * error / dt
-    const power = P + I + D
-    setDisipador(power.toFixed(2))
-    temperature.postVentilador(power.toFixed(2))
-  }
-
-  const data = {
-    labels: allDates,
-    datasets: [
-      {
-        label: 'Temperatura',
-        data: allTemperature,
-        borderColor: 'white',
-        backgroundColor: '#26A69A',
-        tension: 0.5,
-        fill: true,
-        pointBorderWidth: 10
-      },
-    ],
-  };
 
   return (
     <>
@@ -153,7 +39,7 @@ export function Temperature(){
       <hr/>
       <div className='container'> 
         <div className="graph__container">
-          <Line classname='graph' options={options} data={data} />
+          <Chart allDates={allDates} allData={allTemperature} />
         </div>
         <div className='actual__temperature'>
           <div>Temperatura Actual</div>
@@ -170,11 +56,11 @@ export function Temperature(){
         </div>
         <div className='calentador'>
           <h3>Calentador</h3>
-          <div className='switch'>{calentador}%</div>
+          <div className='switch'>5%</div>
         </div>
         <div className='disipador'>
           <h3>Disipador</h3>
-          <div className='switch'>{disipador}%</div>
+          <div className='switch'>2%</div>
         </div>
       </div>      
     </>
